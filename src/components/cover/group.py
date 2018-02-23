@@ -38,7 +38,7 @@ KEY_POSITION = 'position'
 def entities_domain(domain):
     """Validate that entities belong to domain."""
     def validate(values):
-        """Test if entitiy domain is domain."""
+        """Test if entity domain is domain."""
         values = cv.entity_ids(values)
         for ent_id in values:
             if split_entity_id(ent_id)[0] != domain:
