@@ -1,12 +1,11 @@
-# Home Assistant on a Raspberry Pi
+# Home Assistant on Hassbian
+
+
 
 ## Content
 
 1. Common Tasks ([Link](#1-common-tasks))
 2. Home Assistant Setup ([Link](#2-home-assistant-setup))
-3. Setup Z-Wave ([Link](#3-setup-z-wave))
-4. Software ([Link](#4-software))
-
 
 
 
@@ -33,6 +32,25 @@ $ sudo systemctl [start|stop|restart|status] home-assistant@homeassistant.servic
 ##################
 # **Activate environment**
 $ hass
+```
+
+#### Update Home Assistant
+
+```bash
+$ sudo systemctl stop home-assistant@homeassistant.service
+
+# **Activate environment**
+$ pip3 install --upgrade homeassistant
+$ exit
+
+$ sudo systemctl start home-assistant@homeassistant.service
+```
+
+#### Check Configuration
+
+```bash
+# **Activate environment**
+$ hass --script check_config
 ```
 
 #### List of useful directories
@@ -112,58 +130,3 @@ How I setup `Home Assistant` on my Raspberry Pi using `Hassbian 1.3`.
     ```
 
  7. Copy config files to `home/homeassistant/.homeassistant`
-
-
-
-## 3. Setup Z-Wave
-
-https://home-assistant.io/docs/z-wave/
-
-### Aeotec Z-Stick
-
-```bash
-# Find USB Port
-$ sudo ls /dev/tty
-$ sudo dmesg | grep USB
-```
-
-```yaml
-zwave:
-  usb_path: /dev/ttyACM0  ## or /ttyACM1
-```
-
-```bash
-# Disable disco lights
-$ echo -e -n "\x01\x08\x00\xF2\x51\x01\x00\x05\x01\x51" > /dev/serial/by-id/usb-0658_0200-if00
-```
-
-### Razberry Board
-
-```bash
-# Install Z-Way
-$ wget -q -O - razberry.z-wave.me/install | sudo bash
-
-# Deactivate Z-Way Service
-$ sudo update-rc.d z-way-server disable
-
-$ sudo nano /boot/config.txt
-```
-
-```conf
-# Add this to file
-dtoverlay=pi3-disable-bt
-```
-
-```yaml
-zwave:
-  usb_path: /dev/ttyAMA0
-```
-
-
-
-## 4. Software
-
- - SSH Client: Putty ([Link](http://www.putty.org/))
- - SSH File Client: WinSCP ([Link](https://winscp.net/eng/download.php))
-   - File Protocol: `SCP`
-   - Advanced Options - Shell: `sudo su -`
