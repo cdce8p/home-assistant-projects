@@ -17,19 +17,19 @@ logger:
 ```yaml
 sensor:
   - platform: event_notify
+    slack_name: default_channel
     events:
       - homeassistant_start
       - homeassistant_stop
       - zwave.network_ready
-    slack_name: default_channel
 ```
 
 ### Config options
 
 | parameter | required | type | default | description |
 | --------- | -------- | ---- | ------- | ----------- |
-| events | yes | list[string] | | Events that should be tracked. |
 | slack_name | no | string | | Name of slack notify platform. |
+| events | yes | list[string] | | Events that should be tracked. |
 
 
 ## Wind direction
