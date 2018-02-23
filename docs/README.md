@@ -47,6 +47,6 @@ sensor: !include_dir_merge_list sensor/
 
 #### Templating
 
- - **Templating** ([Link](https://home-assistant.io/docs/configuration/templating/))
- - **Sensor Template** ([Link](https://home-assistant.io/components/sensor.template/))
- - **Automation Templating** ([Link](https://home-assistant.io/docs/automation/templating/))
+ - Templating ([Link](https://home-assistant.io/docs/configuration/templating/))
+ - Sensor Template ([Link](https://home-assistant.io/components/sensor.template/))
+ - Automation Templating ([Link](https://home-assistant.io/docs/automation/templating/))

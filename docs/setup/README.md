@@ -65,7 +65,7 @@ $ hass --script check_config
 
 | Task | Command |
 | ---- | ------- |
-| Find files | `find / -type [f | d] -iname '*name*'` |
+| Find files | `find / -type [f \| d] -iname '*name*'` |
 | Find content in files | `grep -rnwl './' -e 'pattern'` |
 
 
