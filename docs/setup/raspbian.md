@@ -41,7 +41,7 @@ $ git rebase upstream/dev
 | ---- | --------- |
 | Config dir | `/home/pi/.homeassistant/` |
 | Virtual Environment | `~/home-assistant/` |
-| Src files | `~/home-assistant/homeassistant` |
+| Src files | `~/home-assistant/homeassistant/` |
 
 
 
