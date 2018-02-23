@@ -1,0 +1,76 @@
+<dom-module id="state-info-cover">
+  <template>
+    <style>
+    :host {
+      @apply(--paper-font-body1);
+      min-width: 150px;
+      white-space: nowrap;
+    }
+
+    state-badge {
+      float: left;
+    }
+
+    .info {
+      margin-left: 56px;
+    }
+
+    .name {
+      @apply(--paper-font-common-nowrap);
+      color: var(--primary-text-color);
+      line-height: 20px;
+    }
+
+    .position, ::slotted(*) {
+      @apply(--paper-font-common-nowrap);
+      color: var(--secondary-text-color);
+      line-height: 20px;
+    }
+    </style>
+
+    <div>
+      <state-badge state-obj='[[stateObj]]'></state-badge>
+
+      <div class='info'>
+        <div class='name' in-dialog$='[[inDialog]]'>[[computeStateName(stateObj)]]</div>
+        <div class='position'>Position: [[currentPosition(stateObj)]]</div>
+        <template is='dom-if' if='[[!inDialog]]'>
+          <slot>
+        </template>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+class StateInfoCover extends Polymer.Element {
+  static get is() { return 'state-info-cover'; }
+
+  static get properties() {
+    return {
+      detailed: {
+        type: Boolean,
+        value: false,
+      },
+
+      stateObj: {
+        type: Object,
+      },
+
+      inDialog: {
+        type: Boolean,
+      },
+    };
+  }
+
+  computeStateName(stateObj) {
+    return window.hassUtil.computeStateName(stateObj);
+  }
+
+  currentPosition(stateObj) {
+    return stateObj.attributes.current_position;
+  }
+}
+
+customElements.define(StateInfoCover.is, StateInfoCover);
+</script>

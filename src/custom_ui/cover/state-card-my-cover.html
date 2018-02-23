@@ -1,0 +1,48 @@
+<link rel='import' href='state-info-cover.html'>
+
+<dom-module id="state-card-my-cover">
+  <template>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    <style>
+      :host {
+        line-height: 1.5;
+      }
+    </style>
+
+    <div class='horizontal justified layout'>
+      <state-info-cover state-obj="[[stateObj]]" in-dialog$='[[inDialog]]'></state-info-cover>
+      <div class='horizontal layout'>
+        <ha-cover-controls hidden$="[[entityObj.isTiltOnly]]" hass="[[hass]]" state-obj="[[stateObj]]"></ha-cover-controls>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  class StateCardMyCover extends Polymer.Element {
+    static get is() {
+      return 'state-card-my-cover';
+    }
+
+    static get properties() {
+      return {
+        hass: Object,
+        stateObj: Object,
+        inDialog: {
+          type: Boolean,
+          value: false,
+        },
+        entityObj: {
+          type: Object,
+          computed: 'computeEntityObj(hass, stateObj)',
+        },
+      };
+    }
+
+    computeEntityObj(hass, stateObj) {
+      var entity = new window.CoverEntity(hass, stateObj);
+      return entity;
+    }
+  }
+  customElements.define(StateCardMyCover.is, StateCardMyCover);
+</script>
