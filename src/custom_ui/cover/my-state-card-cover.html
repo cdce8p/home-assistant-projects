@@ -1,0 +1,30 @@
+<script src='my-state-info-cover.js'></script>
+
+<script>
+StateCardCover = customElements.get('state-card-cover')
+
+class MyStateCardCover extends StateCardCover {
+  static get template() {
+    return Polymer.html`
+      <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+      <style>
+        :host {
+          line-height: 1.5;
+        }
+      </style>
+
+      <div class="horizontal justified layout">
+        <my-state-info-cover state-obj="[[stateObj]]" in-dialog="[[inDialog]]"></my-state-info-cover>
+        <div class="horizontal layout">
+          <ha-cover-controls hidden\$="[[entityObj.isTiltOnly]]" hass="[[hass]]" state-obj="[[stateObj]]"></ha-cover-controls>
+          <ha-cover-tilt-controls hidden\$="[[!entityObj.isTiltOnly]]" hass="[[hass]]" state-obj="[[stateObj]]"></ha-cover-tilt-controls>
+        </div>
+      </div>
+    `
+  }
+}
+  
+
+customElements.define('my-state-card-cover', MyStateCardCover);
+
+</script>
