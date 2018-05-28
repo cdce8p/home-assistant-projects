@@ -4,43 +4,12 @@ StateCardInputNumber = customElements.get('state-card-input_number')
 class MyStateCardInputNumber extends StateCardInputNumber {
   static get template() {
     return Polymer.html`
-    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
-    <style>
-      paper-slider {
-        margin-left: auto;
-      }
-      .state {
-        @apply --paper-font-body1;
-        color: var(--primary-text-color);
-
-        text-align: right;
-        line-height: 40px;
-        display: none !important;
-      }
-      .sliderstate {
-          min-width: 45px;
-          display: none !important;
-      }
-      paper-slider[hidden] {
-        display: none !important;
-      }
-      paper-input {
-        text-align: right;
-        margin-left: auto;
-        display: none !important;
-      }
-    </style>
-
-    <div class="horizontal justified layout" id="input_number_card">
-      <state-info state-obj="[[stateObj]]" in-dialog="[[inDialog]]"></state-info>
-      <paper-slider min="[[min]]" max="[[max]]" value="{{value}}" step="[[step]]" hidden="[[hiddenslider]]" pin="" on-change="selectedValueChanged" on-click="stopPropagation" id="slider" ignore-bar-touch="">
-      </paper-slider>
-      <paper-input no-label-float="" auto-validate="" pattern="[0-9]+([\\.][0-9]+)?" step="[[step]]" min="[[min]]" max="[[max]]" value="{{value}}" type="number" on-change="selectedValueChanged" on-click="stopPropagation" hidden="[[hiddenbox]]">
-      </paper-input>
-      <div class="state" hidden="[[hiddenbox]]">[[stateObj.attributes.unit_of_measurement]]</div>
-      <div id="sliderstate" class="state sliderstate" hidden="[[hiddenslider]]">[[value]] [[stateObj.attributes.unit_of_measurement]]</div>
-    </div>
-`;
+      ${super.template}
+      <style>
+        .state, .sliderstate,
+        .paper-input {display: none !important; }
+      </style>
+    `;
   }
 }
 
