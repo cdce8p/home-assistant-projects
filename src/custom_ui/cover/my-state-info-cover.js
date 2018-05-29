@@ -1,5 +1,3 @@
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-
 StateInfo = customElements.get('state-info')
 
 class MyStateInfoCover extends StateInfo {
