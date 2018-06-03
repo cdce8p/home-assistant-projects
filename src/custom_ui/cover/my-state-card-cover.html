@@ -1,30 +1,62 @@
-<script src='my-state-info-cover.js'></script>
-
 <script>
 StateCardCover = customElements.get('state-card-cover')
+StateInfo = customElements.get('state-info')
 
-class MyStateCardCover extends StateCardCover {
-  static get template() {
+
+// ----------------
+// MyStateInfoCover
+// ----------------
+class MyStateInfoCover extends StateInfo {
+
+  static get styleTemplate() {
     return Polymer.html`
-      <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
-      <style>
-        :host {
-          line-height: 1.5;
-        }
-      </style>
+    ${super.styleTemplate}
+    <style>
+    .name {
+      line-height: 20px;
+    }
+    </style>
+`;
+  }
 
-      <div class="horizontal justified layout">
-        <my-state-info-cover state-obj="[[stateObj]]" in-dialog="[[inDialog]]"></my-state-info-cover>
-        <div class="horizontal layout">
-          <ha-cover-controls hidden\$="[[entityObj.isTiltOnly]]" hass="[[hass]]" state-obj="[[stateObj]]"></ha-cover-controls>
-          <ha-cover-tilt-controls hidden\$="[[!entityObj.isTiltOnly]]" hass="[[hass]]" state-obj="[[stateObj]]"></ha-cover-tilt-controls>
+  static get infoTemplate() {
+    return Polymer.html`
+    <div class="info">
+      <div class="name" in-dialog\$="[[inDialog]]">[[computeStateName(stateObj)]]</div>
+      <div class="extra-info">Position: [[computeStatePosition(stateObj)]]</div>
+
+      <!-- <template is="dom-if" if="[[inDialog]]">
+        <div class="time-ago">
+          <ha-relative-time hass="[[hass]]" datetime="[[stateObj.last_changed]]"></ha-relative-time>
         </div>
-      </div>
-    `
+      </template> -->
+      <template is="dom-if" if="[[!inDialog]]">
+        <div class="extra-info">
+          <slot></slot>
+        </div>
+      </template>
+    </div>
+`;
+  }
+
+
+  computeStatePosition(stateObj) {
+    return stateObj.attributes.current_position;
   }
 }
-  
+customElements.define('my-state-info-cover', MyStateInfoCover);
 
+
+// ----------------
+// MyStateCardCover
+// ----------------
+class MyStateCardCover extends StateCardCover {
+
+  static get stateInfoTemplate() {
+    return Polymer.html`
+    <my-state-info-cover hass="[[hass]]" state-obj="[[stateObj]]" in-dialog="[[inDialog]]"></my-state-info-cover>
+`;
+  }
+}
 customElements.define('my-state-card-cover', MyStateCardCover);
-
 </script>

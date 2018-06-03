@@ -1,13 +1,17 @@
 <script>
 StateCardInputNumber = customElements.get('state-card-input_number')
 
+
+// ----------------------
+// MyStateCardInputNumber
+// ----------------------
 class MyStateCardInputNumber extends StateCardInputNumber {
   static get template() {
     return Polymer.html`
       ${super.template}
       <style>
         .state, .sliderstate,
-        .paper-input {display: none !important; }
+        .paper-input {display: none !important;}
       </style>
     `;
   }
