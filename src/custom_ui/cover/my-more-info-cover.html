@@ -1,0 +1,15 @@
+<script>
+customElements.whenDefined('more-info-cover').then(() => {
+  MoreInfoCover = customElements.get('more-info-cover')
+
+  class MyMoreInfoCover extends MoreInfoCover {
+    /*static get template() {
+      return Polymer.html`
+      ${super.template}
+  `;
+    }*/
+  }
+  customElements.define('my-more-info-cover', MyMoreInfoCover);
+});
+
+</script>
